@@ -1,14 +1,19 @@
 <template>
   <div>
     <template-header></template-header>
-
     <div
       class="uk-container uk-width-2-3 uk-align-center uk-background-muted uk-padding uk-margin-small-top"
     >
-      <div class="uk-container uk-width-1-3">
-        <TemplateForm></TemplateForm>
+      <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+        <div class="uk-width-1-3@m">
+          <template-form></template-form>
+        </div>
+        <template-preview></template-preview>
       </div>
-      <template-preview></template-preview>
+      <!-- <div class="uk-container uk-width-1-3">
+      </div>
+      <div class="uk-container uk-width-2-3">
+      </div>-->
     </div>
   </div>
 </template>

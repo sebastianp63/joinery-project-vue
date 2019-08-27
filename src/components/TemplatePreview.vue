@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="one">
-      <button v-on:click="veneerSide.top= !veneerSide.top" class="btn-top">Top</button>
+      <button class="btn-top">Top</button>
     </div>
     <div class="two">
       <button class="btn-right">Right</button>
@@ -42,34 +42,34 @@ export default {
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 
   div {
     position: relative;
-    border: 2px solid rgb(233, 171, 88);
-    border-radius: 5px;
+    // border: 2px solid rgb(233, 171, 88);
+    // border-radius: 5px;
   }
 
   .bord {
-    border: 2px solid rgb(233, 171, 88);
-    border-radius: 5px;
+    // border: 2px solid rgb(233, 171, 88);
+    // border-radius: 5px;
     background-image: url("../assets/wooden-textured.jpg");
-    color: #d9480f;
+    // color: #d9480f;
   }
 }
 
 .one {
-  grid-column: 2 / 3;
+  grid-column: 2 / 4;
   grid-row: 1 / 2;
 }
 .two {
-  grid-column: 3 / 4;
+  grid-column: 4 / 5;
   grid-row: 2 / 4;
 }
 .three {
-  grid-column: 2/3;
+  grid-column: 2/4;
   grid-row: 4 / 5;
 }
 .four {
@@ -77,7 +77,7 @@ export default {
   grid-row: 2/ 4;
 }
 .five {
-  grid-column: 2 / 3;
+  grid-column: 2 / 4;
   grid-row: 2 / 4;
 }
 

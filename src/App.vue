@@ -11,9 +11,7 @@
 <script>
 import UIkit from "uikit";
 import Icons from "uikit/dist/js/uikit-icons";
-
 UIkit.use(Icons);
-
 UIkit.use(Icons);
 
 export default {};
@@ -33,7 +31,8 @@ $global-link-color: #da7d02;
 }
 
 // 4. Import UIkit.
-@import "uikit/src/scss/uikit-theme.scss";
+@import "../node_modules/uikit/src/scss/uikit-theme.scss";
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

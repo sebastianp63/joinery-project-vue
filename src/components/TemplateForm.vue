@@ -6,14 +6,14 @@
         <div class="uk-margin">
           <label class="uk-form-label" for="form-width">Width:</label>
           <div class="uk-form-controls">
-            <input class="uk-input" id="form-width" type="number" placeholder />
+            <input class="uk-input" id="form-width" type="number" />
           </div>
         </div>
 
         <div class="uk-margin">
           <label class="uk-form-label" for="form-height">Height:</label>
           <div class="uk-form-controls">
-            <input class="uk-input" id="form-height" type="number" placeholder />
+            <input class="uk-input" id="form-height" type="number" />
           </div>
         </div>
 
@@ -34,14 +34,27 @@
             <input class="uk-input" id="form-amount" type="number" placeholder />
           </div>
         </div>
+
+        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+          <label>
+            <input class="uk-checkbox" type="checkbox" @change="$emit('getChangeCheckedTop')" /> Top
+          </label>
+          <label>
+            <input class="uk-checkbox" type="checkbox" @change="$emit('getChangeCheckedBottom')" /> Bottom
+          </label>
+        </div>
+        <!-- <p v-if="checked">just do it</p> -->
       </fieldset>
     </form>
   </div>
 </template>
 
 <script>
+import { METHODS } from "http";
 export default {
-  name: "TemplateForm"
+  name: "TemplateForm",
+  props: {},
+  methods: {}
 };
 </script>
 

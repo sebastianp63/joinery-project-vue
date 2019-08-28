@@ -1,36 +1,42 @@
 <template>
   <div class="wrapper">
-    <div class="one">
-      <button class="btn-top">Top</button>
-    </div>
-    <div class="two">
-      <button class="btn-right">Right</button>
-    </div>
-    <div class="three">
-      <button class="btn-bottom">Bottom</button>
-    </div>
-    <div class="four">
-      <button class="btn-left">Left</button>
-    </div>
-    <div class="bord five"></div>
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+    <div
+      class="bord five"
+      v-bind:class="{ 
+      'top-border': topBorder,
+      'bottom-border': bottomBorder
+      }"
+    ></div>
   </div>
 </template>
 
 <script>
+// export default {
+//   props: {
+//     veneerSide: {
+//       type: Object,
+//       default: function() {
+//         return {
+//           top: false,
+//           bottom: false,
+//           left: false,
+//           right: false
+//         };
+//       }
+//     }
+//   }
+// };
+
 export default {
   props: {
-    veneerSide: {
-      type: Object,
-      default: function() {
-        return {
-          top: false,
-          bottom: false,
-          left: false,
-          right: false
-        };
-      }
-    }
-  }
+    topBorder: Boolean,
+    bottomBorder: Boolean
+  },
+  metods: {}
 };
 </script>
 <style lang="scss" scoped>
@@ -49,13 +55,15 @@ export default {
   div {
     position: relative;
     // border: 2px solid rgb(233, 171, 88);
+
     // border-radius: 5px;
   }
 
   .bord {
-    // border: 2px solid rgb(233, 171, 88);
+    //border: 2px solid rgb(233, 171, 88);
     // border-radius: 5px;
-    background-image: url("../assets/wooden-textured.jpg");
+    background-color: burlywood;
+    // background-image: url("../assets/wooden-textured.jpg");
     // color: #d9480f;
   }
 }
@@ -119,5 +127,13 @@ export default {
   width: 60px;
 
   height: 100%;
+}
+
+.top-border {
+  border-top: 5px solid brown;
+}
+
+.bottom-border {
+  border-bottom: 5px solid brown;
 }
 </style>

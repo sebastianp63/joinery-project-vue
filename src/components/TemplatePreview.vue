@@ -1,16 +1,24 @@
 <template>
   <div class="wrapper">
-    <div class="one"></div>
+    <div class="one">
+      <p
+        class="width-text uk-text-large uk-text-secondary uk-text-bold"
+      >{{templateData.width}} {{templateData.unit}}</p>
+    </div>
     <div class="two"></div>
     <div class="three"></div>
-    <div class="four"></div>
+    <div class="four">
+      <p
+        class="height-text uk-text-large uk-text-secondary uk-text-bold"
+      >{{templateData.height}} {{templateData.unit}}</p>
+    </div>
     <div
       class="bord five"
       v-bind:class="{ 
-      'top-border': topBorder,
-      'bottom-border': bottomBorder,
-      'left-border': leftBorder,
-      'right-border': rightBorder
+      'top-border': templateData.veneer.top ,
+      'bottom-border': templateData.veneer.bottom,
+      'left-border':templateData.veneer.left ,
+      'right-border':templateData.veneer.right ,
       }"
     ></div>
   </div>
@@ -19,12 +27,9 @@
 <script>
 export default {
   props: {
-    topBorder: Boolean,
-    bottomBorder: Boolean,
-    leftBorder: Boolean,
-    rightBorder: Boolean
+    templateData: Object
   },
-  metods: {}
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>
@@ -45,12 +50,25 @@ export default {
   }
 
   .bord {
-    //border: 2px solid rgb(233, 171, 88);
-    // border-radius: 5px;
     background-color: burlywood;
-    // background-image: url("../assets/wooden-textured.jpg");
-    // color: #d9480f;
   }
+}
+
+.width-text {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}
+
+.height-text {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: rotate(270deg) translate(-50%, -75%);
+  transform-origin: 0 0;
 }
 
 .one {

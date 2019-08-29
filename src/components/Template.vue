@@ -1,6 +1,7 @@
 <template>
   <div class="template">
-    <template-header></template-header>
+    <template-header @onHide="hideTemplate"></template-header>
+
     <div
       class="uk-container uk-width-2-3 uk-align-center uk-background-muted uk-padding uk-margin-remove-top"
     >
@@ -8,13 +9,9 @@
         <div class>
           <template-form @onUpdated="onTemplateUpdate" />
         </div>
-        <template-preview
-          v-bind:topBorder="veneerSide.top"
-          v-bind:bottomBorder="veneerSide.bottom"
-          :leftBorder="veneerSide.left"
-          :rightBorder="veneerSide.right"
-        ></template-preview>
+        <template-preview v-bind:templateData="templateData"></template-preview>
       </div>
+      {{isHidden}}
     </div>
   </div>
 </template>
@@ -29,13 +26,17 @@ export default {
   name: "template",
   data: function() {
     return {
-      width: 0,
-      height: 0,
-      veneerSide: {
-        top: false,
-        bottom: false,
-        left: false,
-        right: false
+      isHidden: false,
+      templateData: {
+        width: 100,
+        height: 100,
+        veneer: {
+          top: false,
+          bottom: false,
+          left: false,
+          right: false
+        },
+        unit: "mm"
       }
     };
   },
@@ -47,7 +48,13 @@ export default {
   },
   methods: {
     onTemplateUpdate(data) {
-      console.log(data);
+      this.templateData.width = data.width;
+      this.templateData.height = data.height;
+      this.templateData.unit = data.units;
+      this.templateData.veneer.top = data.glue.includes("t");
+      this.templateData.veneer.bottom = data.glue.includes("b");
+      this.templateData.veneer.left = data.glue.includes("l");
+      this.templateData.veneer.right = data.glue.includes("r");
 
       // Webpack proxy API
 
@@ -58,6 +65,10 @@ export default {
     showData: function(value) {
       this.width = value;
       console.log(this.width);
+    },
+    hideTemplate(data) {
+      console.log(data.hidden);
+      data.hidden ? (this.isHidden = true) : (this.isHidden = false);
     }
   }
 };

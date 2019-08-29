@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: "UserHeader",
   props: {
     templateNumber: {
       type: Number,

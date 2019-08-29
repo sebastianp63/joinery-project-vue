@@ -40,13 +40,6 @@
           </label>
         </div>
 
-        <!-- <div class="uk-margin">
-          <label class="uk-form-label" for="form-amount">Enter number of templates:</label>
-          <div class="uk-form-controls">
-            <input class="uk-input" id="form-amount" type="number" placeholder />
-          </div>
-        </div>-->
-
         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
           <label>
             <input
@@ -82,7 +75,7 @@
           </label>
         </div>
       </fieldset>
-      {{state}}
+      <!-- {{state}} -->
     </form>
   </div>
 </template>
@@ -93,11 +86,11 @@ export default {
   watch: {
     state: {
       handler(old, val) {
-        if (val.height < 0) {
+        if (val.height < 0 || val.height === "") {
           val.height = 0;
         }
 
-        if (val.width < 0) {
+        if (val.width < 0 || val.width === "") {
           val.width = 0;
         }
         this.$emit("onUpdated", this.state);
@@ -112,7 +105,7 @@ export default {
         width: 100,
         height: 100,
         units: "mm",
-        glue: "lrbt"
+        glue: ""
       }
     };
   },
@@ -131,7 +124,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="scss" scoped>
 </style>

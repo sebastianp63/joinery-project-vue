@@ -10,7 +10,6 @@
           @click="hidden=!hidden"
         >{{ hidden ? "Show" : "Hide"}}</button>
         <button class="uk-button uk-button-danger">Delete</button>
-        {{hidden}}
       </div>
     </div>
   </div>
@@ -26,10 +25,7 @@ export default {
   },
   data() {
     return {
-      hidden: {
-        type: Boolean,
-        default: false
-      }
+      hidden: false
     };
   },
   watch: {

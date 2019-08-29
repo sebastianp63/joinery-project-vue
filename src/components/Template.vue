@@ -1,8 +1,8 @@
 <template>
   <div class="template">
-    <template-header @onHide="hideTemplate"></template-header>
-
+    <template-header @onHide="hideTemplate" />
     <div
+      v-show="!isHidden"
       class="uk-container uk-width-2-3 uk-align-center uk-background-muted uk-padding uk-margin-remove-top"
     >
       <div class="uk-child-width-expand@s uk-text-center" uk-grid>
@@ -11,7 +11,6 @@
         </div>
         <template-preview v-bind:templateData="templateData"></template-preview>
       </div>
-      {{isHidden}}
     </div>
   </div>
 </template>
@@ -67,8 +66,7 @@ export default {
       console.log(this.width);
     },
     hideTemplate(data) {
-      console.log(data.hidden);
-      data.hidden ? (this.isHidden = true) : (this.isHidden = false);
+      data ? (this.isHidden = true) : (this.isHidden = false);
     }
   }
 };

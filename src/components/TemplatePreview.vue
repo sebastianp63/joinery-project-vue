@@ -8,33 +8,21 @@
       class="bord five"
       v-bind:class="{ 
       'top-border': topBorder,
-      'bottom-border': bottomBorder
+      'bottom-border': bottomBorder,
+      'left-border': leftBorder,
+      'right-border': rightBorder
       }"
     ></div>
   </div>
 </template>
 
 <script>
-// export default {
-//   props: {
-//     veneerSide: {
-//       type: Object,
-//       default: function() {
-//         return {
-//           top: false,
-//           bottom: false,
-//           left: false,
-//           right: false
-//         };
-//       }
-//     }
-//   }
-// };
-
 export default {
   props: {
     topBorder: Boolean,
-    bottomBorder: Boolean
+    bottomBorder: Boolean,
+    leftBorder: Boolean,
+    rightBorder: Boolean
   },
   metods: {}
 };
@@ -54,9 +42,6 @@ export default {
 
   div {
     position: relative;
-    // border: 2px solid rgb(233, 171, 88);
-
-    // border-radius: 5px;
   }
 
   .bord {
@@ -116,7 +101,6 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-
   height: 50px;
 }
 
@@ -125,7 +109,6 @@ export default {
   top: 0;
   right: 0;
   width: 60px;
-
   height: 100%;
 }
 
@@ -135,5 +118,13 @@ export default {
 
 .bottom-border {
   border-bottom: 5px solid brown;
+}
+
+.left-border {
+  border-left: 5px solid brown;
+}
+
+.right-border {
+  border-right: 5px solid brown;
 }
 </style>

@@ -1,17 +1,19 @@
 <template>
-  <div class="home">
+  <div class="template">
     <template-header></template-header>
     <div
-      class="uk-container uk-width-2-3 uk-align-center uk-background-muted uk-padding uk-margin-small-top"
+      class="uk-container uk-width-2-3 uk-align-center uk-background-muted uk-padding uk-margin-remove-top"
     >
       <div class="uk-child-width-expand@s uk-text-center" uk-grid>
-        <div class="uk-width-1-3@m">
-          <template-form
-            @getChangeCheckedTop="veneerSide.top = !veneerSide.top"
-            @getChangeCheckedBottom="veneerSide.bottom = !veneerSide.bottom"
-          ></template-form>
+        <div class>
+          <template-form @onUpdated="onTemplateUpdate" />
         </div>
-        <template-preview v-bind:topBorder="veneerSide.top" v-bind:bottomBorder="veneerSide.bottom"></template-preview>
+        <template-preview
+          v-bind:topBorder="veneerSide.top"
+          v-bind:bottomBorder="veneerSide.bottom"
+          :leftBorder="veneerSide.left"
+          :rightBorder="veneerSide.right"
+        ></template-preview>
       </div>
     </div>
   </div>
@@ -21,29 +23,48 @@
 import TemplateForm from "@/components/TemplateForm.vue";
 import TemplateHeader from "@/components/TemplateHeader.vue";
 import TemplatePreview from "@/components/TemplatePreview.vue";
+import UserHeader from "@/components/UserHeader.vue";
 
 export default {
-  name: "Template",
+  name: "template",
   data: function() {
     return {
       width: 0,
       height: 0,
       veneerSide: {
         top: false,
-        bottom: false
+        bottom: false,
+        left: false,
+        right: false
       }
     };
   },
   components: {
     TemplateForm,
     TemplateHeader,
-    TemplatePreview
+    TemplatePreview,
+    UserHeader
   },
   methods: {
+    onTemplateUpdate(data) {
+      console.log(data);
+
+      // Webpack proxy API
+
+      // axios.post('url', order).then((data) => {
+      //   alert('Saved')
+      // })
+    },
     showData: function(value) {
       this.width = value;
-      cosnole.log(this.width);
+      console.log(this.width);
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.uk-container {
+  border: 2px solid black;
+}
+</style>

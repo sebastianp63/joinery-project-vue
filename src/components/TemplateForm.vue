@@ -6,14 +6,14 @@
         <div class="uk-margin">
           <label class="uk-form-label" for="form-width">Width:</label>
           <div class="uk-form-controls">
-            <input class="uk-input" id="form-width" type="number" />
+            <input class="uk-input" id="form-width" type="number" v-model="state.width" />
           </div>
         </div>
 
         <div class="uk-margin">
           <label class="uk-form-label" for="form-height">Height:</label>
           <div class="uk-form-controls">
-            <input class="uk-input" id="form-height" type="number" />
+            <input class="uk-input" id="form-height" type="number" v-model="state.height" />
           </div>
         </div>
 
@@ -21,40 +21,114 @@
           <label class="uk-form-label" for="form-width">Unit:</label>
 
           <label>
-            <input class="uk-radio" type="radio" name="radio-unit" checked /> cm
+            <input
+              class="uk-radio"
+              type="radio"
+              name="radio-unit"
+              :checked="state.units === 'cm'"
+              @input="state.units='cm'"
+            /> cm
           </label>
           <label>
-            <input class="uk-radio" type="radio" name="radio-unit" /> mm
+            <input
+              class="uk-radio"
+              type="radio"
+              name="radio-unit"
+              :checked="state.units === 'mm'"
+              @input="state.units='mm'"
+            /> mm
           </label>
         </div>
 
-        <div class="uk-margin">
+        <!-- <div class="uk-margin">
           <label class="uk-form-label" for="form-amount">Enter number of templates:</label>
           <div class="uk-form-controls">
             <input class="uk-input" id="form-amount" type="number" placeholder />
           </div>
-        </div>
+        </div>-->
 
         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
           <label>
-            <input class="uk-checkbox" type="checkbox" @change="$emit('getChangeCheckedTop')" /> Top
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              :checked="state.glue.includes('t')"
+              @input="setGlue('t')"
+            /> Top
           </label>
           <label>
-            <input class="uk-checkbox" type="checkbox" @change="$emit('getChangeCheckedBottom')" /> Bottom
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              :checked="state.glue.includes('b')"
+              @input="setGlue('b')"
+            /> Bottom
+          </label>
+          <label>
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              :checked="state.glue.includes('l')"
+              @input="setGlue('l')"
+            /> Left
+          </label>
+          <label>
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              :checked="state.glue.includes('r')"
+              @input="setGlue('r')"
+            /> Right
           </label>
         </div>
-        <!-- <p v-if="checked">just do it</p> -->
       </fieldset>
+      {{state}}
     </form>
   </div>
 </template>
 
 <script>
-import { METHODS } from "http";
 export default {
   name: "TemplateForm",
-  props: {},
-  methods: {}
+  watch: {
+    state: {
+      handler(old, val) {
+        if (val.height < 0) {
+          val.height = 0;
+        }
+
+        if (val.width < 0) {
+          val.width = 0;
+        }
+        this.$emit("onUpdated", this.state);
+      },
+      deep: true
+    }
+  },
+  data() {
+    return {
+      state: {
+        id: 0,
+        width: 100,
+        height: 100,
+        units: "mm",
+        glue: "lrbt"
+      }
+    };
+  },
+  methods: {
+    setGlue(glue) {
+      let v = new Set(this.state.glue);
+
+      if (this.state.glue.includes(glue)) {
+        v.delete(glue);
+      } else {
+        v.add(glue);
+      }
+
+      this.state.glue = Array.from(v.values()).join("");
+    }
+  }
 };
 </script>
 

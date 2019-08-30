@@ -1,6 +1,6 @@
 <template>
   <div class="template">
-    <template-header @onHide="hideTemplate" />
+    <template-header v-bind:templateNumber="id" @onHide="hideTemplate" />
     <div
       v-show="!isHidden"
       class="uk-container uk-width-2-3 uk-align-center uk-background-muted uk-padding uk-margin-remove-top"
@@ -22,6 +22,9 @@ import TemplatePreview from "@/components/TemplatePreview.vue";
 import UserHeader from "@/components/UserHeader.vue";
 
 export default {
+  props: {
+    id: Number
+  },
   name: "template",
   data: function() {
     return {

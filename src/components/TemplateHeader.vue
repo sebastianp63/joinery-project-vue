@@ -3,7 +3,7 @@
     class="uk-container uk-width-2-3 uk-align-center uk-background-secondary uk-margin-remove-bottom"
   >
     <div class="uk-child-width-expand@s" uk-grid>
-      <h6 class="uk-heading-small">1#</h6>
+      <p class="hedaer-id">#{{templateNumber}} Template</p>
       <div>
         <button
           class="uk-button uk-button-primary"
@@ -40,7 +40,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.uk-button {
+  width: 20%;
+  margin-right: 10px;
+}
 .uk-container {
   border: 2px solid black;
+}
+.hedaer-id {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 40px;
 }
 </style>

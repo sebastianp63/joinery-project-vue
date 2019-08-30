@@ -1,8 +1,19 @@
 <template>
   <div class="home">
     <UserHeader />
-    <component v-for="component in templateComponent" v-bind:is="component"></component>
-    <button @click="addNewTemplate">Add new template</button>
+    <!-- <component
+      v-for="component in templateComponents"
+      v-bind:key="component.index"
+      v-bind:is="component.temp"
+    ></component>-->
+
+    <div v-for="el in templateComponents" v-bind:key="el.id">
+      <Template v-bind:id="el.index"></Template>
+    </div>
+    <button
+      class="uk-button uk-button-default uk-width-2-3 uk-margin-small-top"
+      @click="addNewTemplate"
+    >Add new template</button>
   </div>
 </template>
 
@@ -19,12 +30,25 @@ export default {
   },
   data() {
     return {
-      templateComponent: ["Template"]
+      id: 1,
+      templateComponents: [{ index: 1 }]
     };
   },
   methods: {
     addNewTemplate: function() {
-      this.templateComponent.push("Template");
+      this.id += 1;
+      console.log(this.id);
+      let exist = this.templateComponents.filter(element => {
+        return element.index == this.id;
+      });
+      console.log();
+      if (!exist.length > 0) {
+        this.templateComponents.push({
+          index: this.id
+        });
+      } else {
+        console.log("this themplate has beenalready exist");
+      }
     }
   }
 };

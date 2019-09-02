@@ -1,19 +1,25 @@
 <template>
   <div class="home">
     <UserHeader />
-    <!-- <component
-      v-for="component in templateComponents"
+    <component
+      v-for="(component,id) in templateComponents"
       v-bind:key="component.index"
       v-bind:is="component.temp"
-    ></component>-->
+      v-bind:id="id"
+    ></component>
 
-    <div v-for="el in templateComponents" v-bind:key="el.id">
-      <Template v-bind:id="el.index"></Template>
-    </div>
+    <!-- <div
+      v-for="(el, index) in templateComponents"
+      v-bind:key="el.id "
+      v-on:delete-row="deleteThisRow(index)"
+    >
+      <Template v-bind:id="index"></Template>
+    </div>-->
     <button
       class="uk-button uk-button-default uk-width-2-3 uk-margin-small-top"
       @click="addNewTemplate"
     >Add new template</button>
+    <div>{{templateComponents}}</div>
   </div>
 </template>
 
@@ -21,6 +27,8 @@
 // @ is an alias to /src
 import Template from "@/components/Template.vue";
 import UserHeader from "@/components/UserHeader.vue";
+
+import { bus } from "../main";
 
 export default {
   name: "home",
@@ -31,24 +39,54 @@ export default {
   data() {
     return {
       id: 1,
-      templateComponents: [{ index: 1 }]
+      templateComponents: [{ index: 1, temp: "Template" }]
     };
   },
+  created() {
+    bus.$on("deleteTemplate", data => {
+      console.log("byussss");
+      this.deleteThisRow(data);
+    });
+  },
+
   methods: {
     addNewTemplate: function() {
       this.id += 1;
-      console.log(this.id);
       let exist = this.templateComponents.filter(element => {
         return element.index == this.id;
       });
-      console.log();
       if (!exist.length > 0) {
         this.templateComponents.push({
-          index: this.id
+          index: this.id,
+          temp: "Template"
         });
       } else {
-        console.log("this themplate has beenalready exist");
+        console.log("this themplate has been already exist");
       }
+    },
+
+    deleteThisRow: function(index) {
+      if (this.templateComponents.length > 1) {
+        this.templateComponents.splice(index, 1);
+      }
+      // if (this.templateComponents.length > 1) {
+      //   console.log("start index: " + index);
+      //   const itemToRemove = index - 1;
+      //   // console.log("index to remove: " + itemToRemove);
+      //   this.templateComponents.splice(itemToRemove, 1);
+      //   // this.templateComponents = this.templateComponents
+      //   //   .slice(0, itemToRemove)
+      //   //   .concat(this.templateComponents.slice(-itemToRemove));
+
+      //   // console.log(this.templateComponents);
+      //   this.id = index;
+      //   // console.log("size: " + this.templateComponents.length);
+      //   for (let i = itemToRemove; i < this.templateComponents.length; i++) {
+      //     this.templateComponents[i].index = this.id;
+      //     if (this.id < this.templateComponents.length - 1) this.id++;
+      //   }
+
+      //  }
     }
   }
 };

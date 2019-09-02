@@ -12,6 +12,7 @@
         <template-preview v-bind:templateData="templateData"></template-preview>
       </div>
     </div>
+    {{id}}
   </div>
 </template>
 

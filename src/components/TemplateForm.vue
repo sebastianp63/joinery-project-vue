@@ -93,6 +93,29 @@ export default {
         if (val.width < 0 || val.width === "") {
           val.width = 0;
         }
+
+        if (val.width > this.validateData.maxWidthForCm && val.units === "cm") {
+          val.width = this.validateData.maxWidthForCm;
+        }
+
+        if (
+          val.height > this.validateData.maxHeightForCm &&
+          val.units === "cm"
+        ) {
+          val.height = this.validateData.maxHeightForCm;
+        }
+
+        if (val.width > this.validateData.maxWidthForMm && val.units === "mm") {
+          val.width = this.validateData.maxWidthForMm;
+        }
+
+        if (
+          val.height > this.validateData.maxHeightForMm &&
+          val.units === "mm"
+        ) {
+          val.height = this.validateData.maxHeightForMm;
+        }
+
         this.$emit("onUpdated", this.state);
       },
       deep: true
@@ -100,6 +123,12 @@ export default {
   },
   data() {
     return {
+      validateData: {
+        maxWidthForCm: 280,
+        maxHeightForCm: 207,
+        maxWidthForMm: 2800,
+        maxHeightForMm: 2070
+      },
       state: {
         id: 0,
         width: 100,

@@ -124,10 +124,10 @@ export default {
   data() {
     return {
       validateData: {
-        maxWidthForCm: 500,
-        maxHeightForCm: 300,
-        maxWidthForMm: 5000,
-        maxHeightForMm: 3000
+        maxWidthForCm: 280,
+        maxHeightForCm: 207,
+        maxWidthForMm: 2800,
+        maxHeightForMm: 2070
       },
       state: {
         id: 0,

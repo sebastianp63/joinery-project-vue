@@ -1,5 +1,6 @@
 <template>
   <div class="template">
+    <router-link :to="{ name: 'edit', params: { id: 123 }}">Open format 123</router-link>
     <template-header v-bind:templateNumber="id" @onHide="hideTemplate" />
     <div
       v-show="!isHidden"
@@ -12,7 +13,7 @@
         <template-preview v-bind:templateData="templateData"></template-preview>
       </div>
     </div>
-    {{id}}
+    <!-- {{id}} -->
   </div>
 </template>
 
@@ -26,7 +27,7 @@ export default {
   props: {
     id: Number
   },
-  name: "template",
+  name: "MyTemplate",
   data: function() {
     return {
       isHidden: false,

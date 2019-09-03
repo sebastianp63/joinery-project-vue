@@ -6,13 +6,25 @@
       <form action class="uk-form-horizontal">
         <label class="uk-form-label" for="first-name-template">First name:</label>
         <div class="uk-form-controls">
-          <input class="uk-input" id="first-name-template" type="text" placeholder />
+          <input
+            @input="getFirstName"
+            class="uk-input"
+            id="first-name-template"
+            type="text"
+            placeholder
+          />
         </div>
       </form>
       <form action class="uk-form-horizontal">
         <label class="uk-form-label" for="last-name-template">Last name:</label>
         <div class="uk-form-controls">
-          <input class="uk-input" id="last-name-template" type="text" placeholder />
+          <input
+            @input="getLastName"
+            class="uk-input"
+            id="last-name-template"
+            type="text"
+            placeholder
+          />
         </div>
       </form>
     </div>
@@ -23,9 +35,15 @@
 export default {
   name: "UserHeader",
   props: {
-    templateNumber: {
-      type: Number,
-      reqired: true
+    firstName: String,
+    lastName: String
+  },
+  methods: {
+    getFirstName(e) {
+      this.$emit("inputFirstName", e.target.value);
+    },
+    getLastName(e) {
+      this.$emit("inputLastName", e.target.value);
     }
   }
 };

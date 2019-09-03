@@ -3,7 +3,7 @@
     class="uk-container uk-width-2-3 uk-align-center uk-background-secondary uk-margin-remove-bottom"
   >
     <div class="uk-child-width-expand@s" uk-grid>
-      <p class="hedaer-id">#{{ templateNumber }} Template</p>
+      <p class="hedaer-id">#{{ templateNumber + 1}} Template</p>
       <div>
         <button
           class="uk-button uk-button-primary"

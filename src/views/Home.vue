@@ -1,6 +1,15 @@
 <template>
   <div class="home">
-    <UserHeader />
+    <!-- <UserHeader
+      @inputFirstName="firstName = $event"
+      :firstName="firstName"
+      @inputLastName="lastName = $event"
+      :lastName="lastName"
+    />-->
+    <button
+      class="uk-button uk-button-default uk-width-2-3 uk-margin-small-top"
+      @click="addNewTemplate"
+    >Add new template</button>
     <component
       v-for="(component,id) in templateComponents"
       v-bind:key="component.index"
@@ -11,7 +20,7 @@
     <!-- <div
       v-for="(el, index) in templateComponents"
       v-bind:key="el.id "
-      v-on:delete-row="deleteThisRow(index)"
+      v-on:delete-row="deleteThisRow(index)"`
     >
       <Template v-bind:id="index"></Template>
     </div>-->
@@ -25,7 +34,7 @@
 
 <script>
 // @ is an alias to /src
-import Template from "@/components/Template.vue";
+import MyTemplate from "@/components/MyTemplate.vue";
 import UserHeader from "@/components/UserHeader.vue";
 
 import { bus } from "../main";
@@ -33,13 +42,26 @@ import { bus } from "../main";
 export default {
   name: "home",
   components: {
-    Template,
+    MyTemplate,
     UserHeader
+  },
+  watch: {
+    $route(to, from) {
+      console.log(this.$route.params.id);
+    }
   },
   data() {
     return {
       id: 1,
-      templateComponents: [{ index: 1, temp: "Template" }]
+      templateComponents: [{ index: 1, temp: "MyTemplate" }],
+      firstName: {
+        type: String,
+        default: ""
+      },
+      lastName: {
+        type: String,
+        default: ""
+      }
     };
   },
   created() {
